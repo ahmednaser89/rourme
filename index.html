@@ -1,37 +1,30 @@
-<!doctype html>
+​<!DOCTYPE html>
 <html>
-<head>
-	<title>phone veri</title>
-	<meta charset='utf-8'>
-	
-	
+<body>
 <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
-	
-	
-	
-	
-	<script>
-		ThunkableWebviewerExtension.receiveMessage(function(message) {
-			
-					fetch('https://api.twilio.com/2010-04-01/Accounts/AC709928e3247d2dee671ca337b5924fba/Messages.json', {
+<script>
+ThunkableWebviewerExtension.receiveMessage(function(message) {
+
+
+const form = new FormData();
+form.append('text', message);
+form.append('lang', 'en');
+form.append('opt_countries', 'us,gb,fr');
+form.append('mode', 'standard');
+form.append('api_user', '{484482113}');
+form.append('api_secret', '{pMcLtsZzmGb6pRDkvadB}');
+
+fetch('https://api.sightengine.com/1.0/text/check.json', {
     method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + btoa('AC709928e3247d2dee671ca337b5924fba:44777f9c1425da6cda8f8e15cb772170')
-    },
-    body: 'Body=This will be the body of the new message$EXCLAMATION_MARK&From=+13149476176&To=+201155426584'
-});
-	 .then(res => res.json())
-  .then(data => console.log(data))		
-			;
-  // Do something with your message
-  alert(message)
-});
-		
-		
+    body: form
+})
 
-		
-	</script>
-</head>
+.then(response => response.text())
+.then(data => ThunkableWebviewerExtension.postMessage(data));
+ 
 
+});
+ 
+</script>
+</body>
 </html>
