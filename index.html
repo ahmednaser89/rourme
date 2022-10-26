@@ -1,8 +1,8 @@
 ​<!DOCTYPE html>
 <html>
 <body>
-    <p>This is a paragraph.</p>
-    
+    <p>abiuse .</p>
+
 <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
 <script>
 ThunkableWebviewerExtension.receiveMessage(function(message) {
@@ -12,9 +12,10 @@ const form = new FormData();
 form.append('text', message);
 form.append('lang', 'en');
 form.append('opt_countries', 'us,gb,fr');
+form.append('categories', 'drug', 'weapon', 'extremism');
 form.append('mode', 'standard');
-form.append('api_user', '{484482113}');
-form.append('api_secret', '{pMcLtsZzmGb6pRDkvadB}');
+form.append('api_user', '484482113');
+form.append('api_secret', 'pMcLtsZzmGb6pRDkvadB');
 
 fetch('https://api.sightengine.com/1.0/text/check.json', {
     method: 'POST',
